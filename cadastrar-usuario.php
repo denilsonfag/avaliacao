@@ -36,7 +36,7 @@
 	}
 
 	// criptografando a senha:
-	$senhacripto = sha1($senha);
+	$senhacripto = md5($senha);
 
 	// conexão ao banco de dados com PDO:
 	$pdo = new PDO('mysql:host=' . DBHOST . '; dbname=' . DBNAME, DBUSER, DBPWD);
