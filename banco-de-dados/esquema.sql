@@ -12,7 +12,7 @@ CREATE TABLE aluno(
   login VARCHAR(50) NOT NULL UNIQUE,
   senha CHAR(32) NOT NULL
 );
-INSERT INTO aluno(id_aluno, nome, grupo, login, senha) VALUES (1, 'Professor', 0, 'prof', MD5('prof'));
+INSERT INTO aluno(id_aluno, nome, grupo, login, senha) VALUES (1, 'Professor', 0, 'prof', MD5('prof123'));
 
 CREATE TABLE nota(
   id_aluno_avaliador INT,
