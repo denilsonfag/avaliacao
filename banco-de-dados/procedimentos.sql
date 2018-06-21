@@ -58,35 +58,6 @@ DELIMITER ;
 -- CALL atualizar_nota(1,2,NULL);
 
 
--- impedir um aluno de votar nele mesmo:
-DELIMITER $$
-DROP TRIGGER IF EXISTS impedir_auto_voto$$
-CREATE TRIGGER impedir_auto_voto 
-BEFORE INSERT ON nota
-FOR EACH ROW 
-BEGIN
-  IF NEW.id_aluno_avaliador = NEW.id_aluno_avaliado
-  THEN
-    SIGNAL SQLSTATE '45000' 
-    SET message_text = 'Não pode votar em si mesmo';       
-  END IF;
-END$$
-DELIMITER ;
-
-DELIMITER $$
-DROP TRIGGER IF EXISTS impedir_auto_voto2$$
-CREATE TRIGGER impedir_auto_voto2 
-BEFORE UPDATE ON nota
-FOR EACH ROW 
-BEGIN
-  IF NEW.id_aluno_avaliador = NEW.id_aluno_avaliado
-  THEN
-    SIGNAL SQLSTATE '45000' 
-    SET message_text = 'Não pode votar em si mesmo';       
-  END IF;
-END$$
-DELIMITER ;
-
 
 -- validar nota:
 DELIMITER $$
@@ -118,3 +89,37 @@ BEGIN
   END IF;
 END$$
 DELIMITER ;
+
+
+/*
+
+-- impedir um aluno de votar nele mesmo:
+DELIMITER $$
+DROP TRIGGER IF EXISTS impedir_auto_voto$$
+CREATE TRIGGER impedir_auto_voto 
+BEFORE INSERT ON nota
+FOR EACH ROW 
+BEGIN
+  IF NEW.id_aluno_avaliador = NEW.id_aluno_avaliado
+  THEN
+    SIGNAL SQLSTATE '45000' 
+    SET message_text = 'Não pode votar em si mesmo';       
+  END IF;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+DROP TRIGGER IF EXISTS impedir_auto_voto2$$
+CREATE TRIGGER impedir_auto_voto2 
+BEFORE UPDATE ON nota
+FOR EACH ROW 
+BEGIN
+  IF NEW.id_aluno_avaliador = NEW.id_aluno_avaliado
+  THEN
+    SIGNAL SQLSTATE '45000' 
+    SET message_text = 'Não pode votar em si mesmo';       
+  END IF;
+END$$
+DELIMITER ;
+
+*/
