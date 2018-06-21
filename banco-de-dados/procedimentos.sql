@@ -69,7 +69,7 @@ BEGIN
   IF NEW.nota NOT IN (1,2,3,4,5,6,7,8,9,10)
   THEN
     SIGNAL SQLSTATE '45000' 
-    SET message_text = 'Nota inválida: deve ser um valor inteiro entre 1 e 10.';       
+    SET message_text = 'A nota deve ser um valor inteiro entre 1 e 10.';       
   END IF;
 END$$
 DELIMITER ;
@@ -85,7 +85,7 @@ BEGIN
   IF NEW.nota NOT IN (1,2,3,4,5,6,7,8,9,10)
   THEN
     SIGNAL SQLSTATE '45000' 
-    SET message_text = 'Nota inválida: deve ser um valor inteiro entre 1 e 10.';       
+    SET message_text = 'A nota deve ser um valor inteiro entre 1 e 10.';       
   END IF;
 END$$
 DELIMITER ;

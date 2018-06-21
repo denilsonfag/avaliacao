@@ -10,7 +10,7 @@
 	}
 
 	if (empty($_POST['nota'])) {
-		$_SESSION['mensagem'] = 'Nota inválida: deve ser um valor inteiro entre 1 e 10.';
+		$_SESSION['mensagem'] = 'A nota deve ser um valor inteiro entre 1 e 10.';
 		header('Location: view-lista-alunos.php');
 		die();
 	}
