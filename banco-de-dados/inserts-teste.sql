@@ -20,4 +20,4 @@ INSERT INTO aluno(nome, grupo, login, senha) VALUES ('nome18', 3, '18', MD5(1));
 INSERT INTO aluno(nome, grupo, login, senha) VALUES ('nome19', 4, '19', MD5(1));
 INSERT INTO aluno(nome, grupo, login, senha) VALUES ('nome20', 5, '20', MD5(1));
 
-INSERT INTO aluno(id_aluno, nome, grupo, login, senha) VALUES (1000, 'professor', 0, 'a', MD5('a'));
+

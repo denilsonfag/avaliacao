@@ -9,7 +9,7 @@ BEGIN
       ON id_aluno = id_aluno_avaliado
       AND id_aluno_avaliador = p_id_avaliador
     WHERE id_aluno <> p_id_avaliador
-      AND id_aluno <> 1000
+      AND id_aluno <> 1 -- professor
     ORDER BY grupo, nome;
     -- ORDER BY id_aluno;
 END$$
@@ -104,3 +104,17 @@ END$$
 DELIMITER ;
 
 -- INSERT INTO nota VALUES (1, 1, 10);
+
+DELIMITER $$
+DROP TRIGGER IF EXISTS validar_nota2$$
+CREATE TRIGGER validar_nota2 
+BEFORE UPDATE ON nota
+FOR EACH ROW
+BEGIN
+  IF NEW.nota NOT IN (1,2,3,4,5,6,7,8,9,10)
+  THEN
+    SIGNAL SQLSTATE '45000' 
+    SET message_text = 'Nota inválida: deve ser um valor inteiro entre 1 e 10.';       
+  END IF;
+END$$
+DELIMITER ;

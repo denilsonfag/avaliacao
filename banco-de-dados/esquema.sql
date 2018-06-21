@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS avaliacao;
-CREATE DATABASE avaliacao;
-USE avaliacao;
+-- DROP DATABASE IF EXISTS abd;
+CREATE DATABASE abd;
+USE abd;
 
 CREATE TABLE aluno(
   id_aluno INT AUTO_INCREMENT PRIMARY KEY,
@@ -9,6 +9,7 @@ CREATE TABLE aluno(
   login VARCHAR(50) NOT NULL UNIQUE,
   senha CHAR(32) NOT NULL
 );
+INSERT INTO aluno(id_aluno, nome, grupo, login, senha) VALUES (1, 'Professor', 0, 'prof', MD5('prof'));
 
 CREATE TABLE nota(
   id_aluno_avaliador INT,
