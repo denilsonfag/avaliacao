@@ -61,7 +61,7 @@
 	$_SESSION['id_aluno_logado'] = $linha['id_aluno'];
 	$_SESSION['nome_aluno_logado'] = $linha['nome'];
 	$_SESSION['logado'] = true; 
-	header('Location: view-notas.php');
+	header('Location: view-lista-alunos.php');
 	die();
 
 ?>	

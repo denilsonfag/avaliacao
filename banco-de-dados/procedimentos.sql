@@ -10,12 +10,30 @@ BEGIN
       AND id_aluno_avaliador = p_id_avaliador
     WHERE id_aluno <> p_id_avaliador
       AND id_aluno <> 1000
-    -- ORDER BY grupo, nome;
-    ORDER BY id_aluno;
+    ORDER BY grupo, nome;
+    -- ORDER BY id_aluno;
 END$$
 DELIMITER ;
 
-CALL lista_alunos(1);
+-- CALL lista_alunos(1);
+
+
+-- retornar os dados de um aluno:
+DELIMITER $$
+DROP PROCEDURE IF EXISTS dados_aluno$$
+CREATE PROCEDURE dados_aluno(IN p_id_avaliador INT, IN p_id_avaliado INT)
+BEGIN
+    SELECT id_aluno, nome, grupo, nota
+    FROM aluno
+    LEFT JOIN nota 
+      ON id_aluno = id_aluno_avaliado
+      AND id_aluno_avaliador = p_id_avaliador
+    WHERE id_aluno = p_id_avaliado;
+END$$
+DELIMITER ;
+
+-- CALL dados_aluno(1,10);
+
 
 -- inserir ou atualizar a nota de um aluno:
 DELIMITER $$
@@ -37,15 +55,12 @@ BEGIN
 END$$
 DELIMITER ;
 
-CALL atualizar_nota(1,2,5);
+-- CALL atualizar_nota(1,2,NULL);
 
 
-
-
-
-
--- impedir um aluno de votar nele mesmo
+-- impedir um aluno de votar nele mesmo:
 DELIMITER $$
+DROP TRIGGER IF EXISTS impedir_auto_voto$$
 CREATE TRIGGER impedir_auto_voto 
 BEFORE INSERT ON nota
 FOR EACH ROW 
@@ -57,24 +72,6 @@ BEGIN
   END IF;
 END$$
 DELIMITER ;
-
-DELIMITER $$
-DROP TRIGGER IF EXISTS validar_nota$$
-CREATE TRIGGER validar_nota 
-BEFORE INSERT ON nota
-FOR EACH ROW
-BEGIN
-  IF NEW.nota < 0 OR NEW.nota > 10
-  THEN
-    SIGNAL SQLSTATE '45000' 
-    SET message_text = 'Nota inválida: deve ser um valor
-                        inteiro entre 0 e 10';       
-  END IF;
-END$$
-DELIMITER ;
-
-
-INSERT INTO nota VALUES (1, 1, 10);
 
 DELIMITER $$
 DROP TRIGGER IF EXISTS impedir_auto_voto2$$
@@ -89,3 +86,21 @@ BEGIN
   END IF;
 END$$
 DELIMITER ;
+
+
+-- validar nota:
+DELIMITER $$
+DROP TRIGGER IF EXISTS validar_nota$$
+CREATE TRIGGER validar_nota 
+BEFORE INSERT ON nota
+FOR EACH ROW
+BEGIN
+  IF NEW.nota NOT IN (1,2,3,4,5,6,7,8,9,10)
+  THEN
+    SIGNAL SQLSTATE '45000' 
+    SET message_text = 'Nota inválida: deve ser um valor inteiro entre 1 e 10.';       
+  END IF;
+END$$
+DELIMITER ;
+
+-- INSERT INTO nota VALUES (1, 1, 10);
