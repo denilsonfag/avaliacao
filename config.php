@@ -1,6 +1,6 @@
 <?php
-    define('DBUSER','denilsonfbar');
-    define('DBPWD','denilsonfbar');
-    define('DBHOST','db-avaliacao.chzz00dnkhkk.sa-east-1.rds.amazonaws.com');
-    define('DBNAME','avaliacao');
+    define('DBUSER','root');
+    define('DBPWD','123');
+    define('DBHOST','localhost');
+    define('DBNAME','bd');
 ?>

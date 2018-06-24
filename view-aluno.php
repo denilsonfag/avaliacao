@@ -57,7 +57,7 @@
 	$linha = $statement->fetch(PDO::FETCH_ASSOC);
 
 	echo '<p> Grupo: ' . $linha['grupo'] . '&nbsp;&nbsp;&nbsp;&nbsp;' . $linha['nome']
-	    . '&nbsp;&nbsp;<input type="text" pattern="\d*" name="nota" value="'. $linha['nota'] .'"> </p>';
+	    . '&nbsp;&nbsp;<input type="text" pattern="\d*" name="nota" value="'. $linha['nota'] .'" autofocus> </p>';
 
 
 	echo '

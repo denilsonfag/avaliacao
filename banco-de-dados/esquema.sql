@@ -1,9 +1,6 @@
 -- DROP DATABASE IF EXISTS avaliacao;
-
-CREATE DATABASE avaliacao
-  CHARACTER SET utf8
-  COLLATE utf8_general_ci;
-USE avaliacao;
+-- CREATE DATABASE avaliacao
+-- USE avaliacao;
 
 CREATE TABLE aluno(
   id_aluno INT AUTO_INCREMENT PRIMARY KEY,
